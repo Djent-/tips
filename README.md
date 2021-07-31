@@ -71,6 +71,28 @@ print(args.short)
 print(args.boolean)
 ```
 
+# Reverse Engineering
+
+`binwalk -E firmware.bin` Display entropy graph
+
+`binwalk -x firmware.bin` Extract firmware data
+
+`binwalk -e -M -d 3 firmware.bin` Makostra extract data to depth
+
+`hexdump -C firmware.bin | less` hexdump
+
+`:2001000021460...` This is Intel Hex
+
+`S32500000100...` This is Motorola SREC
+
+```bash
+python3 -m pip install bincopy
+bincopy convert -i ihex -o binary input.hex output.bin
+bincopy convert -i srec -o binary input.s19 output.bin
+```
+
+`cpio --no-absolute-filenames -iv < out` Extract from CPIO archive
+
 # SQL
 
 `SELECT col FROM table LIMIT [OFFSET], [QUANTITY]` iterate over offset with quantity 1 to get row-by-row
