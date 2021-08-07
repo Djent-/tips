@@ -1,6 +1,12 @@
 # tips
 So I don't ever need to google this shit again
 
+# nmap
+
+`nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA [FILE] -vvv --open -iL [SCOPE]`
+
+Scan super quick
+
 # Vim
 
 `:terminal`
@@ -70,6 +76,19 @@ args = parse_args()
 print(args.short)
 print(args.boolean)
 ```
+
+```python3
+# ...
+
+import pdb
+pdb.set_trace()
+
+# ... 
+
+# $ print(dir(object))
+```
+
+Enable debugging and view the attributes of an object
 
 # Reverse Engineering
 
