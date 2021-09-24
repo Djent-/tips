@@ -23,6 +23,10 @@ Scan super quick
 
 `Ctrl+s` fucks up vim. `Ctrl+q` to unfuck
 
+`Ctrl+<` and `Ctrl+>` to adjust vertical split size
+
+`Ctrl++` and `Ctrl+-` to adjust horizontal split size
+
 # Linux
 
 `timeout 5 sleep 10` Auto stop a program after some time
