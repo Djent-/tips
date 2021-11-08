@@ -17,6 +17,10 @@ Scan super quick
 
 `:w terminal.log` write terminal buffer to file from normal mode
 
+`u` Undo
+
+`Ctrl+r` Redo
+
 `Ctrl+w [hjkl]` switch to pane left/down/up/right
 
 `Ctrl+w [HJKL]` move pane left/down/up/right
