@@ -98,6 +98,12 @@ pdb.set_trace()
 
 Enable debugging and view the attributes of an object
 
+```bash
+wfuzz -s 0.1 -w wordlist https://example.com/FUZZ
+```
+
+Wfuzz request delay is a float in seconds which is [passed to time.sleep()](https://github.com/xmendez/wfuzz/blob/1b695ee9a87d66a7d7bf6cae70d60a33fae51541/src/wfuzz/fuzzqueues.py#L47)
+
 # Reverse Engineering
 
 `binwalk -E firmware.bin` Display entropy graph
