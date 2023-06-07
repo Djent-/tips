@@ -37,6 +37,8 @@ Scan super quick
 
 `unbuffer buffered_writes.bin | tee out.log` Unbuffer buffered stdout - see Python below
 
+`tar -czvf filename.tar.gz /path` Create a tar archive
+
 # Bash
 
 ```bash
