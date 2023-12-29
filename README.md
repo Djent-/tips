@@ -1,13 +1,33 @@
 # tips
 So I don't ever need to google this shit again
 
-# nmap
+# Contents
 
-`nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA [FILE] -vvv --open -iL [SCOPE]`
+- [Assorted tools](#assorted-tools)
+  - [nmap](#nmap)
+  - [vim](#vim)
+  - [wfuzz](#wfuzz)
+- [Linux](#linux)
+- [Bash](#bash)
+- [Python](#python)
+  - Unbuffering
+  - [Requests](#requests-library-warnings)
+  - [Argparse](#argparse)
+  - Debugging
+- [Reverse Engineering](#reverse-engineering)
+- [SQL](#sql)
+  - MySQL
 
+# Assorted Tools
+
+## nmap
 Scan super quick
 
-# Vim
+```bash
+nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA [FILE] -vvv --open -iL [SCOPE]
+```
+
+## Vim
 
 `:terminal`
 
@@ -31,6 +51,13 @@ Scan super quick
 
 `Ctrl++` and `Ctrl+-` to adjust horizontal split size
 
+## Wfuzz
+Wfuzz request delay is a float in seconds which is [passed to time.sleep()](https://github.com/xmendez/wfuzz/blob/1b695ee9a87d66a7d7bf6cae70d60a33fae51541/src/wfuzz/fuzzqueues.py#L47)
+
+```bash
+wfuzz -s 0.1 -w wordlist https://example.com/FUZZ
+```
+
 # Linux
 
 `timeout 5 sleep 10` Auto stop a program after some time
@@ -41,6 +68,7 @@ Scan super quick
 
 # Bash
 
+## Loop Through Lines of a File
 ```bash
 lines=`cat $1`
 for line in $lines
@@ -49,17 +77,21 @@ do
 done
 ```
 
+## Parameter Expansion
 `${variable/match/replace}` parameter expansion replace (not regex - you can do shit like `file_*`)
 
 `${variable//match/replace}` parameter expansion global replace
 
 # Python
-
+## Unbuffering
 `python3 -u writes_to_stdout.py` Write to stdout unbuffered
 
 `python3 -u writes_to_stdout.py | tee out.log` This is why writing unbuffered matters
 
 `python3 -u handles_ctrl_c.py | tee -i out.log` Have tee ignore SIGINT and let Python handle it
+
+## Requests Library Warnings
+I know I don't have the CA cert, shut up
 
 ```python3
 import requests
@@ -67,7 +99,9 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 requests.get(url, verify=False)
 ```
-I know I don't have the CA cert, shut up
+
+## Argparse
+Template `argpase.ArgumentParser`
 
 ```python3
 import argparse, sys
@@ -87,6 +121,9 @@ print(args.short)
 print(args.boolean)
 ```
 
+## Python Debugger
+Enable debugging and view the attributes of an object
+
 ```python3
 # ...
 
@@ -97,14 +134,6 @@ pdb.set_trace()
 
 # $ print(dir(object))
 ```
-
-Enable debugging and view the attributes of an object
-
-```bash
-wfuzz -s 0.1 -w wordlist https://example.com/FUZZ
-```
-
-Wfuzz request delay is a float in seconds which is [passed to time.sleep()](https://github.com/xmendez/wfuzz/blob/1b695ee9a87d66a7d7bf6cae70d60a33fae51541/src/wfuzz/fuzzqueues.py#L47)
 
 # Reverse Engineering
 
@@ -134,7 +163,7 @@ bincopy convert -i srec -o binary input.s19 output.bin
 
 `SUBSTRING("test", [OFFSET], [QUANTITY])=` iterate over offset with quantity 1 to get char-by-char
 
-# MySQL
+## MySQL
 
 `@@version`
 
