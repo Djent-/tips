@@ -14,6 +14,7 @@ So I don't ever need to google this shit again
   - [Requests](#requests-library-warnings)
   - [Argparse](#argparse)
   - Debugging
+  - [Rich](#rich-library)
 - [Reverse Engineering](#reverse-engineering)
 - [SQL](#sql)
   - MySQL
@@ -133,6 +134,69 @@ pdb.set_trace()
 # ... 
 
 # $ print(dir(object))
+```
+
+## Rich Library
+
+### Progress
+```python
+import time
+from rich.progress import track
+
+for i in track(range(20), description="Processing..."):
+    time.sleep(1)  # Simulate work being done
+```
+
+### Spinny Progress
+```python
+import time
+from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
+
+progress = Progress(
+    SpinnerColumn(),
+    *Progress.get_default_columns(),
+    TimeElapsedColumn(),
+)
+
+with progress:
+    for i in progress.track(range(20), description="Processing..."):
+        time.sleep(1)  # Simulate work being done
+```
+
+### Rich Tracebacks
+
+```python
+import logging
+from rich.logging import RichHandler
+
+logging.basicConfig(
+    level="NOTSET",
+    format="%(message)s",
+    datefmt="[%X]",
+    handlers=[RichHandler(rich_tracebacks=True)]
+)
+
+log = logging.getLogger("rich")
+try:
+    print(1 / 0)
+except Exception:
+    log.exception("unable print!")
+```
+
+### Rich Console
+
+```python3
+import time
+
+from rich.console import Console
+console = Console()
+
+console.print("[blue underline]Looks like a link")
+
+console.log("Hello, World!", log_locals=True)
+
+with console.status("Working...", spinner="dots"):
+    time.sleep(5)
 ```
 
 # Reverse Engineering
