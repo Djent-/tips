@@ -115,9 +115,9 @@ def parse_args():
   parser = argparse.ArgumentParser(description='text')
   parser.add_argument('-s', '--short', type=str, help='text')
   parser.add_argument('-b', '--boolean', action='store_true', help='text')
-  subparsers = parser.add_subparsers(help='sub-command help')
+  subparsers = parser.add_subparsers()
   # create the parser for the "a" subcommand
-  parser_a = subparsers.add_parser('a', help='multiply')
+  parser_a = subparsers.add_parser('a')
   parser_a.add_argument('x', type=int, help='x var')
   parser_a.add_argument('y', type=int, help='y var')
   parser_a.set_defaults(func=foo)
@@ -130,6 +130,7 @@ def parse_args():
 args = parse_args()
 print(args.short)
 print(args.boolean)
+args.func(args)
 ```
 
 ## Python Debugger
