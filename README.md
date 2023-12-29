@@ -111,6 +111,10 @@ def parse_args():
   parser = argparse.ArgumentParser(description='text')
   parser.add_argument('-s', '--short', type=str, help='text')
   parser.add_argument('-b', '--boolean', action='store_true', help='text')
+  subparsers = parser.add_subparsers(help='sub-command help')
+  # create the parser for the "a" subcommand
+  parser_a = subparsers.add_parser('a', help='a help')
+  parser_a.add_argument('bar', type=int, help='bar help')
   if len(sys.argv) == 1:
     parser.print_help()
     sys.exit(1)
