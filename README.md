@@ -71,6 +71,7 @@ wfuzz -s 0.1 -w wordlist https://example.com/FUZZ
 
 ## Loop Through Lines of a File
 ```bash
+IFS=$'\n'
 lines=`cat $1`
 for line in $lines
 do
